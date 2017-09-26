@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.utils.datastructures import MultiValueDictKeyError
 
 from blog.models import Post
@@ -63,8 +63,10 @@ def post_add(request):
         title = request.POST['title']
         content = request.POST['content']
 
+
         author = User.objects.get(username='siwon')
         post = Post(
+
             author=author,
             title=title,
             content=content,
@@ -74,8 +76,9 @@ def post_add(request):
                 post.publish()
         except MultiValueDictKeyError:
             post.hide()
-        return HttpResponse(
-            'title : {}<br> content : {}'.format(post.title, post.content))
+
+        # return redirect('/')
+        return redirect('/post/detail/{}'.format(post.pk))
 
     # elif request.method == 'GET':
     else:
