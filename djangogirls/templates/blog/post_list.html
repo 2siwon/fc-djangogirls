@@ -1,14 +1,18 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="post-container">
-		{% for post in posts %}
-			<div class="post">
-                <h4 class="post-title"><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h4>
-				<p class="content">{{ post.content|linebreaksbr|truncatewords:30 }}</p>
-				<p class="right-text">{{ post.published_date }} | <strong>Published</strong></p>
-				<p class="right-text">{{ post.author.username }} | <strong>Author</strong></p>
-			</div>
-        {% endfor %}
+<div class="post-container">
+    {% for post in posts %}
+    <div class="post">
+        <h4 class="post-title"><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h4>
+        <p class="content">{{ post.content|linebreaksbr|truncatewords:50 }}</p>
+        <p class="right-text">{{ post.published_date }} | <strong>Published</strong></p>
+        <p class="right-text">{{ post.author.username }} | <strong>Author</strong></p>
     </div>
+    {% endfor %}
+</div>
+
+<a class="btn btn-default btn-sm btn-back-list" href="/post/form">
+    글쓰기
+</a>
 {% endblock %}
