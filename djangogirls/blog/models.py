@@ -23,6 +23,7 @@ class Post(models.Model):
         self.published_date = timezone.now()
         self.save()
     def hide(self):
+
         """
         게시글을 미발행상태로 만듬
             자신의 published_date를 None으로 할당

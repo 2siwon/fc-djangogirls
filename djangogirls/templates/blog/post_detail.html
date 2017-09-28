@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-<a href="/" ></a>
+<a href="/"></a>
 
 <a class="btn btn-default btn-sm btn-back-list" href="/">
     <span class="glyphicon glyphicon-chevron-left"></span>
@@ -17,5 +17,9 @@
         <p class="right-text">{{ post.author.username }} | <strong>Author</strong></p>
 
     </div>
+    <form action="{% url 'post_delete' pk=post.pk %}" method="post">
+        {% csrf_token %}
+        <button class="btn btn-primary btn-block" value="{{ post.pk }}">삭제하기</button>
+    </form>
 </div>
 {% endblock %}
